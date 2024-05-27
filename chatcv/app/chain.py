@@ -1,4 +1,5 @@
 import os
+import sys
 import getpass
 import bs4
 from langchain import hub
@@ -30,11 +31,11 @@ from langchain_core.runnables import RunnableMap, RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langserve import add_routes
 from langserve.pydantic_v1 import BaseModel, Field
-
 from prompts import DEFAULT_DOCUMENT_PROMPT, CONDENSE_QUESTION_PROMPT, ANSWER_PROMPT
 # Load the OpenAI API and LangChain key from the environment
 dotenv.load_dotenv()
 # User input
+ROOT = os.path.dirname((os.path.dirname(__file__)))
 class ChatHistory(BaseModel):
     """Chat history with the bot."""
 
@@ -63,7 +64,7 @@ def calculate_embeddings_rag():
         Calculate embeddings for rag, open folder media and recalculate all embeddings
     '''
     reader = SimpleDirectoryReader(
-        input_dir="media/"
+        input_dir=os.path.join(ROOT,"media")#
     )
     docs = reader.load_data()
     print(f"Loaded {len(docs)} docs")
@@ -76,7 +77,7 @@ def calculate_embeddings_rag():
 
 def get_chain():
      
-    vectorstore=Chroma(persist_directory="./chroma_db",)
+    vectorstore=Chroma(persist_directory="./chroma_db", embedding_function=OpenAIEmbeddings())
     retriever = vectorstore.as_retriever()
 
     _inputs = RunnableMap(
@@ -100,3 +101,5 @@ def get_chain():
 
     # response = rag_chain.invoke({"input": "Who is Lorenzo Baraldi?"})
     # response["answer"]
+if __name__ == "__main__":
+    calculate_embeddings_rag()
