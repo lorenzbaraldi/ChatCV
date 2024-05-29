@@ -64,7 +64,8 @@ def calculate_embeddings_rag():
         Calculate embeddings for rag, open folder media and recalculate all embeddings
     '''
     reader = SimpleDirectoryReader(
-        input_dir=os.path.join(ROOT,"media")#
+        input_dir=os.path.join(ROOT,"media"),
+        recursive=True
     )
     docs = reader.load_data()
     print(f"Loaded {len(docs)} docs")
