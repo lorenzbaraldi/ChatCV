@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from langserve import add_routes
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from chain import get_chain, calculate_embeddings_rag
+from app.chain import get_chain, calculate_embeddings_rag
 app = FastAPI()
 
 

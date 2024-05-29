@@ -31,7 +31,7 @@ from langchain_core.runnables import RunnableMap, RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langserve import add_routes
 from langserve.pydantic_v1 import BaseModel, Field
-from prompts import DEFAULT_DOCUMENT_PROMPT, CONDENSE_QUESTION_PROMPT, ANSWER_PROMPT
+from app.prompts import DEFAULT_DOCUMENT_PROMPT, CONDENSE_QUESTION_PROMPT, ANSWER_PROMPT
 # Load the OpenAI API and LangChain key from the environment
 dotenv.load_dotenv()
 # User input
