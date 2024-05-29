@@ -26,7 +26,7 @@ dnspython==2.6.1
 docker-pycreds==0.4.0
 email_validator==2.1.1
 exceptiongroup==1.2.1
-faiss-gpu==1.7.2
+#faiss-gpu==1.7.2
 fastapi==0.110.3
 fastapi-cli==0.0.4
 filelock==3.14.0
