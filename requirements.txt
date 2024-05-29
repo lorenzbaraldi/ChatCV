@@ -160,7 +160,7 @@ tomli==2.0.1
 tomlkit==0.12.5
 tqdm==4.66.4
 transformers==4.41.1
-typer==0.9.4
+typer
 typing-inspect==0.9.0
 typing_extensions==4.12.0
 tzdata==2024.1
