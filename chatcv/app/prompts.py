@@ -9,7 +9,7 @@ Follow Up Input: {question}
 Standalone question:"""
 CONDENSE_QUESTION_PROMPT = PromptTemplate.from_template(_TEMPLATE)
 
-ANSWER_TEMPLATE = """Answer the question based only on the following context:
+ANSWER_TEMPLATE = """Answer the question in english based only on the following context:
 {context}
 
 Question: {question}
