@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Set page configuration for a wide layout
-st.set_page_config(page_title="Chatbot Interface", layout="wide")
+st.set_page_config(page_title="Chatbot CV Lorenzo Baraldi", layout="wide")
 
 # Custom CSS for styling the chat interface
 st.markdown("""
@@ -54,8 +54,10 @@ if "chat_history" not in st.session_state:
 
 # Function to get response from the FastAPI service
 def get_response(question, chat_history):
-    url = "https://chatcv-production.up.railway.app/invoke"
+    # url = "https://chatcv-production.up.railway.app/invoke"
+    url = "http://0.0.0.0:8000/invoke"
     inputs = {"input": {"question": question, "chat_history": chat_history}}
+    print(inputs)
     response = requests.post(url, json=inputs)
     return response.json()["output"]
 
@@ -98,4 +100,5 @@ with st.form(key="chat_form"):
         st.session_state.messages.append(("You", user_input))
         st.session_state.messages.append(("Bot", response))
         st.session_state.chat_history.append((user_input, response))
+        st.experimental_rerun()
 
