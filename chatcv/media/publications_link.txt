@@ -1,0 +1,4 @@
+The (R)Evolution of Multimodal Large Language Models: A Survey: https://arxiv.org/pdf/2402.12451
+Learning to Mask and Permute Visual Tokens for Vision Transformer Pre-Training: https://arxiv.org/pdf/2306.07346
+Unveiling the impact of image transformations on deepfake detection: An experimental analysis : https://iris.unimore.it/bitstream/11380/1309209/6/2023-iciap-deepfake.pdf
+Let's ViCE! Mimicking Human Cognitive Behavior in Image Generation Evaluation: https://dl.acm.org/doi/pdf/10.1145/3581783.3612706

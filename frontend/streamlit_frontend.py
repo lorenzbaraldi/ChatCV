@@ -64,8 +64,8 @@ def get_response(question, chat_history):
 # Template questions for quick access
 template_questions = [
     "Tell me about Lorenzo Baraldi.",
-    "What is Lorenzo's research field?",
-    "What are the latest Lorenzo's publications?",
+    "What are Lorenzo's research field?",
+    "What are Lorenzo's publications? Provide the link.",
 ]
 
 # Sidebar with quick questions
