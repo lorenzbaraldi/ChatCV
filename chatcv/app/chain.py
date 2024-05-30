@@ -86,7 +86,7 @@ def get_chain():
             chat_history=lambda x: _format_chat_history(x["chat_history"])
         )
         | CONDENSE_QUESTION_PROMPT
-        | ChatOpenAI(model="gpt-3.5-turbo-0125")
+        | ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
         | StrOutputParser(),
     )
 
@@ -95,7 +95,7 @@ def get_chain():
         "question": lambda x: x["standalone_question"],
     }
     conversational_qa_chain = (
-        _inputs | _context | ANSWER_PROMPT | ChatOpenAI() | StrOutputParser()
+        _inputs | _context | ANSWER_PROMPT | ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0) | StrOutputParser()
     )
     chain = conversational_qa_chain.with_types(input_type=ChatHistory)
     return chain
