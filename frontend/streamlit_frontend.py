@@ -54,8 +54,8 @@ if "chat_history" not in st.session_state:
 
 # Function to get response from the FastAPI service
 def get_response(question, chat_history):
-    # url = "https://chatcv-production.up.railway.app/invoke"
-    url = "http://0.0.0.0:8000/invoke"
+    url = "https://chatcv-production.up.railway.app/invoke"
+    # url = "http://0.0.0.0:8000/invoke"
     inputs = {"input": {"question": question, "chat_history": chat_history}}
     print(inputs)
     response = requests.post(url, json=inputs)
