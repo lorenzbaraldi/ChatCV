@@ -77,9 +77,13 @@ def calculate_embeddings_rag():
     
 
 def get_chain():
-     
+    '''
+        Get the chain for the app
+    '''
+    if not os.path.exists("./chroma_db"):
+        calculate_embeddings_rag()
     vectorstore=Chroma(persist_directory="./chroma_db", embedding_function=OpenAIEmbeddings())
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 
     _inputs = RunnableMap(
         standalone_question=RunnablePassthrough.assign(
