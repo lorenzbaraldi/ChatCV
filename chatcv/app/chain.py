@@ -32,10 +32,11 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langserve import add_routes
 from langserve.pydantic_v1 import BaseModel, Field
 from app.prompts import DEFAULT_DOCUMENT_PROMPT, CONDENSE_QUESTION_PROMPT, ANSWER_PROMPT
+ROOT = os.path.dirname((os.path.dirname(__file__)))
 # Load the OpenAI API and LangChain key from the environment
 dotenv.load_dotenv()
 # User input
-ROOT = os.path.dirname((os.path.dirname(__file__)))
+
 class ChatHistory(BaseModel):
     """Chat history with the bot."""
 
@@ -80,9 +81,10 @@ def get_chain():
     '''
         Get the chain for the app
     '''
-    if not os.path.exists("./chroma_db"):
-        calculate_embeddings_rag()
     vectorstore=Chroma(persist_directory="./chroma_db", embedding_function=OpenAIEmbeddings())
+    if len(vectorstore.get()['ids']) == 0:
+        calculate_embeddings_rag()
+        vectorstore=Chroma(persist_directory="./chroma_db", embedding_function=OpenAIEmbeddings())
     retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
 
     _inputs = RunnableMap(
@@ -107,4 +109,4 @@ def get_chain():
     # response = rag_chain.invoke({"input": "Who is Lorenzo Baraldi?"})
     # response["answer"]
 if __name__ == "__main__":
-    calculate_embeddings_rag()
+    get_chain()
