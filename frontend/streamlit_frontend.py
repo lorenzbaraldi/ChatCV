@@ -1,6 +1,14 @@
 import streamlit as st
 import requests
 
+PRODUCTION_URL="https://chatcv-production.up.railway.app/invoke"
+DEVELOPMENT_URL="http://0.0.0.0:8000/invoke"
+
+if PRODUCTION_URL:
+    URL = PRODUCTION_URL
+else:
+    URL = DEVELOPMENT_URL
+
 # Set page configuration for a wide layout
 st.set_page_config(page_title="Chatbot CV Lorenzo Baraldi", layout="wide")
 
@@ -54,8 +62,7 @@ if "chat_history" not in st.session_state:
 
 # Function to get response from the FastAPI service
 def get_response(question, chat_history):
-    url = "https://chatcv-production.up.railway.app/invoke"
-    # url = "http://0.0.0.0:8000/invoke"
+    url = URL
     inputs = {"input": {"question": question, "chat_history": chat_history}}
     print(inputs)
     response = requests.post(url, json=inputs)
