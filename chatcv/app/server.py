@@ -3,7 +3,8 @@ import sys
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from langserve import add_routes
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+import rootutils
+root = rootutils.setup_root(__file__, dotenv=True, pythonpath=True, cwd=False)
 from app.chain import get_chain, calculate_embeddings_rag
 app = FastAPI()
 
